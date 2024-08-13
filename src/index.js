@@ -7,6 +7,7 @@ const client = new Client({
         IntentsBitField.Flags.GuildMembers,
         IntentsBitField.Flags.GuildMessages,
         IntentsBitField.Flags.MessageContent,
+        IntentsBitField.Flags.GuildMessageReactions,
     ],
 });
 
@@ -21,7 +22,17 @@ client.on('messageCreate', (msg) => {
     console.log(msg.content);
     if (msg.content === 'beep') {
         msg.reply('boop');
+        return;
     };
+    if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') {
+        msg.react('👀');
+        return;
+    };
+    if (msg.content.substring(0, 35) === 'https://replay.pokemonshowdown.com/') {
+        msg.react('🔎');
+        return;
+    };
+    
 });
 
 client.login(process.env.TOKEN);
