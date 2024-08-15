@@ -4,7 +4,7 @@ const joinGame = (url) => {
 
 const watchReplay = (url) => {
   return 'ggwp!';
-}
+};
 
 const handler = {
   joinGame,

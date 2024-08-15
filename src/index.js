@@ -26,7 +26,25 @@ client.on('messageCreate', (msg) => {
     };
     if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') {
         msg.react('👀');
-        console.log(showdownHandler.joinGame(msg.content));
+        const result = showdownHandler.joinGame(msg.content);
+        let chans = {};
+        msg.guild.channels.fetch().then(fetchedChannels => {chans = fetchedChannels});
+        console.log(chans);
+        for (let i = 0; i < chans.length; i++) {
+          console.log(chans[i].name);
+          if (chans[i].name.includes('match-results')) {
+            chans[i].send(result);
+            return;
+          }
+          
+        }
+        console.log('Could not find match-results');
+          /*if (c.name.includes('match-results')) {
+            let channel = c;
+          }
+        }
+        if (channel){
+          channel.send(result);**/
         return;
     };
     if (msg.content.substring(0, 35) === 'https://replay.pokemonshowdown.com/') {
