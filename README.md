@@ -6,3 +6,5 @@ A discord bot that can join in-progress pokemon showdown games and record the re
 Can also analyse replays in the same way.
 
 Built using node.js and discord.js
+
+Inspiration taken from [Porygon](https://github.com/PorygonBot/bot-js)
