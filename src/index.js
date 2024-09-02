@@ -1,5 +1,5 @@
 require('dotenv').config();
-const { Client, IntentsBitField, Message } = require('discord.js');
+const { Client, IntentsBitField, Message, spoiler } = require('discord.js');
 const showdownHandler = require('./showdownHandler.js');
 
 const client = new Client({
@@ -26,8 +26,10 @@ client.on('messageCreate', (msg) => {
     };
     if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') {
         msg.react('👀');
-        const result = showdownHandler.joinGame(msg.content);
-        let chans = {};
+        const result = spoiler(showdownHandler.joinGame(msg.content));
+        msg.reply(result);
+        /*let chans = {};
+        console.log(msg.guild.id);
         msg.guild.channels.fetch().then(fetchedChannels => {chans = fetchedChannels});
         console.log(chans);
         for (let i = 0; i < chans.length; i++) {
@@ -38,7 +40,7 @@ client.on('messageCreate', (msg) => {
           }
           
         }
-        console.log('Could not find match-results');
+        console.log('Could not find match-results');**/
           /*if (c.name.includes('match-results')) {
             let channel = c;
           }
