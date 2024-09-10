@@ -16,42 +16,24 @@ client.on('ready', (c) => {
     console.log(`${c.user.username}, I choose you!`);
 });
 
-client.on('messageCreate', (msg) => {
-    if (msg.author.bot) {
+client.on('messageCreate', (msg) => { // When a new message is posted in server
+    if (msg.author.bot) { // Ignore message if author is bot
         return;
     };
-    if (msg.content === 'beep') {
+    /*if (msg.content === 'beep') { // For testing
         msg.reply('boop');
         return;
-    };
-    if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') {
+    };*/
+    if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') { // If message is a valid showdown battle link
         msg.react('👀');
-        const result = spoiler(showdownHandler.joinGame(msg.content));
-        msg.reply(result);
-        /*let chans = {};
-        console.log(msg.guild.id);
-        msg.guild.channels.fetch().then(fetchedChannels => {chans = fetchedChannels});
-        console.log(chans);
-        for (let i = 0; i < chans.length; i++) {
-          console.log(chans[i].name);
-          if (chans[i].name.includes('match-results')) {
-            chans[i].send(result);
-            return;
-          }
-          
-        }
-        console.log('Could not find match-results');**/
-          /*if (c.name.includes('match-results')) {
-            let channel = c;
-          }
-        }
-        if (channel){
-          channel.send(result);**/
+        const result = spoiler(showdownHandler.joinGame(msg.content)); // Calls join function in showdownHandler, spoilers result
+        msg.reply(result); // Reply to message with spoilered result
         return;
     };
-    if (msg.content.substring(0, 35) === 'https://replay.pokemonshowdown.com/') {
+    if (msg.content.substring(0, 35) === 'https://replay.pokemonshowdown.com/') { // If message is a valid showdown replay link
         msg.react('🔎');
-        console.log(showdownHandler.watchReplay(msg.content));
+        const result = spoiler(showdownHandler.watchReplay(msg.content)); // Calls watch function in showdownHandler, spoilers result
+        msg.reply(result); // Reply to message with spoilered result
         return;
     };
     

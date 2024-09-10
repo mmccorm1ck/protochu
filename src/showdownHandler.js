@@ -1,12 +1,12 @@
-const joinGame = (url) => {
+const joinGame = (url) => { // Placeholder function for joining active game
   return 'glhf!';
 };
 
-const watchReplay = (url) => {
+const watchReplay = (url) => { // Placeholder function for watching replays
   return 'ggwp!';
 };
 
-const handler = {
+const handler = { // Functions to export
   joinGame,
   watchReplay,
 };
