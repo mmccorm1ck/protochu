@@ -1,24 +1,38 @@
 require('dotenv').config();
 const ws = require("ws");
 const axios = require("axios");
+const ws = require("ws");
+const querystring = require("querystring");
 
-const joinGame = (url) => { // Placeholder function for joining active game
-  return 'glhf!';
-};
-
-const watchReplay = (url) => { // Placeholder function for watching replays
-  return 'ggwp!';
-};
-
-async login()
+class ShowdownHandler
 {
-  const username = process.env.USER;
-  const password = process.env.PASS;
+  constructor(url)
+  {
+    this.url = url;
+    this.websocket = new ws("ws://sim3.psim.us:8000/showdown/websocket");
+    this.username = process.env.USER;
+    this.password = process.env.PASS;
+    this.challstr = "";
+  }
+  async login()
+  {
+    const loginUrl = "https://play.pokemonshowdown.com/~~showdown/action.php";
+    const loginData = querystring.stringity([
+      act: "login",
+      name: this.username,
+      pass: this.password,
+      challstr: this.challstr
+    ])
+    let response = await axios.post(loginUrl, loginData);
+  }
+  joinGame()
+  {
+    return 'glhf!';
+  }
+  watchReplay()
+  {
+    return 'ggwp!';
+  }
 }
 
-const handler = { // Functions to export
-  joinGame,
-  watchReplay,
-};
-
-module.exports = handler;
+module.exports = ShowdownHandler;

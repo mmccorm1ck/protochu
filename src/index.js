@@ -26,13 +26,15 @@ client.on('messageCreate', (msg) => { // When a new message is posted in server
     };*/
     if (msg.content.substring(0, 39) === 'https://play.pokemonshowdown.com/battle') { // If message is a valid showdown battle link
         msg.react('👀');
-        const result = spoiler(showdownHandler.joinGame(msg.content)); // Calls join function in showdownHandler, spoilers result
+        const handler = new ShowdownHandler(msg.content);
+        const result = spoiler(handler.joinGame()); // Calls join function in showdownHandler, spoilers result
         msg.reply(result); // Reply to message with spoilered result
         return;
     };
     if (msg.content.substring(0, 35) === 'https://replay.pokemonshowdown.com/') { // If message is a valid showdown replay link
         msg.react('🔎');
-        const result = spoiler(showdownHandler.watchReplay(msg.content)); // Calls watch function in showdownHandler, spoilers result
+        const handler = new ShowdownHandler(msg.content);
+        const result = spoiler(handler.watchReplay()); // Calls watch function in showdownHandler, spoilers result
         msg.reply(result); // Reply to message with spoilered result
         return;
     };
