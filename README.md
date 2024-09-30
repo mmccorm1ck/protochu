@@ -7,4 +7,4 @@ Can also analyse replays in the same way.
 
 Built using node.js and discord.js
 
-Inspiration taken from [Porygon](https://github.com/PorygonBot/bot-js)
+Inspiration taken from [Porygon](https://github.com/PorygonBot/bot-js) and Quinella and TalkTakesTime's [Chat Bot](https://github.com/TalkTakesTime/Pokemon-Showdown-Bot)
